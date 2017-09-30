@@ -1,4 +1,4 @@
-" Vimball Archiver by Charles E. Campbell, Jr., Ph.D.
+" Vimball Archiver by Charles E. Campbell
 UseVimball
 finish
 doc/pwd.txt	[[[1
@@ -30,7 +30,7 @@ Installation {{{
 Usage {{{
 
     File type {{{
-    * file named *.pwd are open with the pwd plugin.
+    * Files named *.pwd are open with the pwd plugin.
     }}}
 
     Syntax {{{
@@ -97,7 +97,7 @@ Example {{{
 
 License {{{
 
-    Copyright © 2013, 2016 Christophe Delord (cdsoft.fr)
+    Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
     This work is free. You can redistribute it and/or modify it under the
     terms of the Do What The Fuck You Want To Public License, Version 2,
     as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -106,7 +106,7 @@ License {{{
 # vim: set filetype=pwd foldmethod=manual :
 syntax/pwd.vim	[[[1
 19
-" Copyright © 2013, 2016 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -127,7 +127,7 @@ highlight sectionStopMarker guifg=blue guibg=NONE gui=NONE ctermfg=blue ctermbg=
 let b:current_syntax = "pwd"
 plugin/pwd.vim	[[[1
 173
-" Copyright © 2013, 2016 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -290,7 +290,7 @@ endfunction
 
 function! NewEntry()
     " empty section template
-    exec "normal o{{{\nUser:\t\nPass:\t\nUrl:\t\n}}}"
+    exec "normal o{{{\nUser:   \nPass:   \nUrl:    \n}}}"
     " back to the start of the section and add a space
     exec "normal %I "
     " continue in insert mode to enter the section name
@@ -302,7 +302,7 @@ unlet s:cpo_save
 
 ftdetect/pwd.vim	[[[1
 10
-" Copyright © 2013, 2016 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.

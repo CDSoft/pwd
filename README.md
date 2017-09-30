@@ -4,9 +4,9 @@ PassWord plugin for Vim
 This Vim plugin helps managing password lists within Vim
 in a very basic but efficient way.
 
-The latest version of pwd can be found here: cdsoft.fr/pwd
+The latest version of pwd can be found here: <http://cdsoft.fr/pwd>
 
-It's based on
+It's based on:
 
 - <http://davejlong.com/blog/2013/05/02/vim-as-a-password-manager/>
 - <http://vim.wikia.com/wiki/Keep_passwords_in_encrypted_file>
@@ -28,7 +28,7 @@ Usage
 File type
 ---------
 
-file named `*.pwd` are open with the pwd plugin.
+Files named `*.pwd` are open with the pwd plugin.
 
 Syntax
 ------
@@ -95,7 +95,7 @@ A password file may look like this:
 License
 =======
 
-Copyright © 2013, 2016 Christophe Delord (cdsoft.fr)
+Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
 
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
