@@ -95,7 +95,7 @@ A password file may look like this:
 License
 =======
 
-Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
+Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
 
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,

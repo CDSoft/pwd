@@ -8,7 +8,7 @@ PassWord plugin for Vim {{{
     This Vim plugin helps managing password lists within Vim
     in a very basic but efficient way.
 
-    The latest version of pwd can be found here: cdsoft.fr/pwd
+    The latest version of pwd can be found here: http://cdsoft.fr/pwd
 
     It's based on {{{
     * http://davejlong.com/blog/2013/05/02/vim-as-a-password-manager/
@@ -97,7 +97,7 @@ Example {{{
 
 License {{{
 
-    Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
+    Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
     This work is free. You can redistribute it and/or modify it under the
     terms of the Do What The Fuck You Want To Public License, Version 2,
     as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -106,7 +106,7 @@ License {{{
 # vim: set filetype=pwd foldmethod=manual :
 syntax/pwd.vim	[[[1
 19
-" Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -120,14 +120,14 @@ syntax match sectionName "^\s*\zs.\{-}\ze\s*{{{" contained
 syntax match sectionStartMarker "{{{"
 syntax match sectionStopMarker "}}}"
 
-highlight sectionName guifg=blue guibg=NONE gui=bold,underline ctermfg=blue ctermbg=NONE cterm=bold,underline
-highlight sectionStartMarker guifg=blue guibg=NONE gui=NONE ctermfg=blue ctermbg=NONE cterm=NONE
-highlight sectionStopMarker guifg=blue guibg=NONE gui=NONE ctermfg=blue ctermbg=NONE cterm=NONE
+highlight sectionName guifg=red guibg=NONE gui=bold,underline ctermfg=red ctermbg=NONE cterm=bold,underline
+highlight sectionStartMarker guifg=orange guibg=NONE gui=NONE ctermfg=red ctermbg=NONE cterm=NONE
+highlight sectionStopMarker guifg=orange guibg=NONE gui=NONE ctermfg=red ctermbg=NONE cterm=NONE
 
 let b:current_syntax = "pwd"
 plugin/pwd.vim	[[[1
 173
-" Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -302,7 +302,7 @@ unlet s:cpo_save
 
 ftdetect/pwd.vim	[[[1
 10
-" Copyright © 2013, 2016, 2017 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
