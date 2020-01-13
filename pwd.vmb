@@ -2,7 +2,7 @@
 UseVimball
 finish
 doc/pwd.txt	[[[1
-101
+103
 PassWord plugin for Vim {{{
 
     This Vim plugin helps managing password lists within Vim
@@ -74,6 +74,8 @@ Encryption {{{
     and encrypts it when it is saved.
 
     Or save your file into an encrypted container.
+
+    Warning: no encryption is available on NeoVim.
 }}}
 
 Example {{{
@@ -97,7 +99,7 @@ Example {{{
 
 License {{{
 
-    Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
+    Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdsoft.fr)
     This work is free. You can redistribute it and/or modify it under the
     terms of the Do What The Fuck You Want To Public License, Version 2,
     as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -106,7 +108,7 @@ License {{{
 # vim: set filetype=pwd foldmethod=manual :
 syntax/pwd.vim	[[[1
 19
-" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -126,8 +128,8 @@ highlight sectionStopMarker guifg=orange guibg=NONE gui=NONE ctermfg=red ctermbg
 
 let b:current_syntax = "pwd"
 plugin/pwd.vim	[[[1
-173
-" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
+175
+" Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -153,7 +155,9 @@ function! SetupPwd()
     " Encryption setup
     """""""""""""""""""
 
+if !has('nvim')
     setlocal cryptmethod=blowfish2
+endif
 
     " disable the swap file
     setlocal noswapfile         " keeps others from sniffing in the swapfile.
@@ -302,7 +306,7 @@ unlet s:cpo_save
 
 ftdetect/pwd.vim	[[[1
 10
-" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.

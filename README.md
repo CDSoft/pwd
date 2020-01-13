@@ -58,7 +58,8 @@ F7          Double click  copies the word under the
 ----------- ------------- ---------------------------------
 
 [^1]: The password generator uses pwgen
-      (« apt-get install pwgen » on debian).
+      (« apt-get install pwgen » on debian
+      or « dnf install pwgen » on fedora).
       If pwgen is not found, an internal generator written
       in Vim script is used (may not be as strong as pwgen).
 
@@ -72,6 +73,8 @@ Vim can do it with the '-x' option.
 and encrypts it when it is saved.
 
 Or save your file into an encrypted container.
+
+Warning: no encryption is available on NeoVim.
 
 Example
 =======
@@ -95,7 +98,7 @@ A password file may look like this:
 License
 =======
 
-Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
+Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdsoft.fr)
 
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,

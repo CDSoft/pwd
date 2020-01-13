@@ -1,4 +1,4 @@
-" Copyright © 2013, 2016, 2017, 2019 Christophe Delord (cdsoft.fr)
+" Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdsoft.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -24,7 +24,9 @@ function! SetupPwd()
     " Encryption setup
     """""""""""""""""""
 
+if !has('nvim')
     setlocal cryptmethod=blowfish2
+endif
 
     " disable the swap file
     setlocal noswapfile         " keeps others from sniffing in the swapfile.
