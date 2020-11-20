@@ -2,10 +2,10 @@
 UseVimball
 finish
 doc/pwd.txt	[[[1
-103
+112
 PassWord plugin for Vim {{{
 
-    This Vim plugin helps managing password lists within Vim
+    This Vim plugin helps managing password lists within Vim/Neovim
     in a very basic but efficient way.
 
     The latest version of pwd can be found here: http://cdelord.fr/pwd
@@ -17,6 +17,12 @@ PassWord plugin for Vim {{{
     * http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
     * http://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
     }}}
+
+    And uses {{{
+    * ccrypt
+    * gzip
+    * pwgen (optional)
+    }}}
 }}}
 
 Installation {{{
@@ -25,6 +31,8 @@ Installation {{{
 
     * download pwd.vmb
     * open this file with vim and type « :so % »
+
+    ccrypt and gzip shall also be installed.
 }}}
 
 Usage {{{
@@ -49,8 +57,8 @@ Shortcuts {{{
     F8                        generates a password
                               with letters and digits (*)
     ----------- ------------- ---------------------------
-    Alt-F8                    generates a password
-                              with letters, digits
+    Ctrl-F8                   generates a password
+    Shift-F8                  with letters, digits
                               and special characters (*)
     ----------- ------------- ---------------------------
     F7          Double click  copies the word under the
@@ -67,15 +75,16 @@ Shortcuts {{{
 
 Encryption {{{
 
-    It may be wise to encrypt your password file.
-    Vim can do it with the '-x' option.
+    pwd files are encrypted with ccrypt.
+    This requires an external dependency but works
+    for both vim and neovim.
 
-    « gvim -x file.pwd » decrypts file.pwd when it is open
-    and encrypts it when it is saved.
-
-    Or save your file into an encrypted container.
-
-    Warning: no encryption is available on NeoVim.
+    Migration of old files (encrypted with «vim -X») {{{
+        - rename old_file.pwd to old_file.pwd-old
+        - create a new empty file:  vim new_file.pwd
+        - import the old file:      :r old_file.pwd-old
+        - save the new file:        :wq
+    }}}
 }}}
 
 Example {{{
@@ -128,7 +137,7 @@ highlight sectionStopMarker guifg=orange guibg=NONE gui=NONE ctermfg=red ctermbg
 
 let b:current_syntax = "pwd"
 plugin/pwd.vim	[[[1
-175
+173
 " Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdelord.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
@@ -154,10 +163,6 @@ function! SetupPwd()
 
     " Encryption setup
     """""""""""""""""""
-
-if !has('nvim')
-    setlocal cryptmethod=blowfish2
-endif
 
     " disable the swap file
     setlocal noswapfile         " keeps others from sniffing in the swapfile.
@@ -186,7 +191,9 @@ endif
     nnoremap <F8> :call PwGen('')<CR>
     nnoremap <S-F8> :call PwGen('-y')<CR>
     nnoremap <C-F8> :call PwGen('-y')<CR>
-    nnoremap <M-F8> :call PwGen('-y')<CR>
+    " Same for Neovim (F20 ↔ S-F8, F32 ↔ C-F8)
+    nnoremap <F20> :call PwGen('-y')<CR>
+    nnoremap <F32> :call PwGen('-y')<CR>
     " Double click / F7
     setlocal keywordprg=!
     nnoremap <2-LeftMouse> :call DoubleClick()<CR>
@@ -305,14 +312,24 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 
 ftdetect/pwd.vim	[[[1
-10
+20
 " Copyright © 2013, 2016, 2017, 2019, 2020 Christophe Delord (cdelord.fr)
 " This work is free. You can redistribute it and/or modify it under the
 " terms of the Do What The Fuck You Want To Public License, Version 2,
 " as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 
-autocmd BufRead,BufNewFile *.pwd set filetype=pwd | call SetupPwd()
 augroup filetypedetect
-  au BufRead,BufNewFile *.pwd setfiletype pwd | call SetupPwd()
+  au BufRead,BufNewFile     *.pwd setfiletype pwd | call SetupPwd()
+
+  au BufReadPre,BufNewFile  *.pwd setl bin viminfo= noswapfile
+  au BufReadPost,BufNewFile *.pwd let $PWD_PASS = inputsecret("Master password: ")
+  au BufReadPost            *.pwd silent 1,$!sh -c 'ccrypt -cb -E PWD_PASS | gunzip'
+  au BufReadPost,BufNewFile *.pwd set nobin
+
+  au BufWritePre            *.pwd set bin
+  au BufWritePre            *.pwd silent! 1,$!sh -c 'gzip | ccrypt -e -E PWD_PASS'
+  au BufWritePost           *.pwd silent! u
+  au BufWritePost           *.pwd set nobin
+
 augroup END
 

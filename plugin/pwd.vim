@@ -24,10 +24,6 @@ function! SetupPwd()
     " Encryption setup
     """""""""""""""""""
 
-if !has('nvim')
-    setlocal cryptmethod=blowfish2
-endif
-
     " disable the swap file
     setlocal noswapfile         " keeps others from sniffing in the swapfile.
     setlocal bufhidden=wipe     " erases all session information when the file is left.
@@ -55,7 +51,9 @@ endif
     nnoremap <F8> :call PwGen('')<CR>
     nnoremap <S-F8> :call PwGen('-y')<CR>
     nnoremap <C-F8> :call PwGen('-y')<CR>
-    nnoremap <M-F8> :call PwGen('-y')<CR>
+    " Same for Neovim (F20 ↔ S-F8, F32 ↔ C-F8)
+    nnoremap <F20> :call PwGen('-y')<CR>
+    nnoremap <F32> :call PwGen('-y')<CR>
     " Double click / F7
     setlocal keywordprg=!
     nnoremap <2-LeftMouse> :call DoubleClick()<CR>
