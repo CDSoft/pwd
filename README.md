@@ -4,7 +4,7 @@ PassWord plugin for Vim
 This Vim plugin helps managing password lists within Vim
 in a very basic but efficient way.
 
-The latest version of pwd can be found here: <http://cdelord.fr/pwd>
+The latest version of pwd can be found here: <https://github.com/CDSoft/pwd>
 
 It's based on:
 
